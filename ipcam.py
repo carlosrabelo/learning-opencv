@@ -1,9 +1,13 @@
 import cv2
+from decouple import config
 
-username = 'teste'
-password = 'teste'
+username = config('CAMERA_USERNAME')
+password = config('CAMERA_PASSWORD')
+hostname = config('CAMERA_HOSTNAME')
 
-url = 'rtsp://' + username + ':' + password + '@172.16.244.101/cam/realmonitor?channel=1&subtype=0'
+url = 'rtsp://' + username + ':' + password + '@' + hostname + '/cam/realmonitor?channel=1&subtype=0'
+
+print(url)
 
 vcap = cv2.VideoCapture(url)
 
