@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import cv2
 import imutils
 from decouple import config
@@ -18,7 +20,7 @@ while True:
 
     ret, frame = vcap.read()
 
-    frame = imutils.resize(frame, width=800)
+    frame = imutils.resize(frame, width=600)
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
