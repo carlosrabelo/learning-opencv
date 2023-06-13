@@ -1,4 +1,5 @@
 import cv2
+import imutils
 from decouple import config
 
 username = config('CAMERA_USERNAME')
@@ -6,8 +7,6 @@ password = config('CAMERA_PASSWORD')
 hostname = config('CAMERA_HOSTNAME')
 
 url = 'rtsp://' + username + ':' + password + '@' + hostname + '/cam/realmonitor?channel=1&subtype=0'
-
-print(url)
 
 vcap = cv2.VideoCapture(url)
 
@@ -19,13 +18,15 @@ while True:
 
     ret, frame = vcap.read()
 
+    frame = imutils.resize(frame, width=800)
+
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     faces = haarCascade.detectMultiScale(
         gray,
         scaleFactor=1.1,
-        minNeighbors=15,
-        minSize=(30, 60)
+        minNeighbors=5,
+        minSize=(25, 25)
     )
 
     for (x, y, w, h) in faces:
