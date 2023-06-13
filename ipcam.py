@@ -11,9 +11,9 @@ print(url)
 
 vcap = cv2.VideoCapture(url)
 
-cascadePath = "cascades/haarcascade_frontalface_default.xml"
+cascadePath = "haarcascades/haarcascade_fullbody.xml"
 
-faceCascade = cv2.CascadeClassifier(cascadePath)
+haarCascade = cv2.CascadeClassifier(cascadePath)
 
 while True:
 
@@ -21,7 +21,7 @@ while True:
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    faces = faceCascade.detectMultiScale(
+    faces = haarCascade.detectMultiScale(
         gray,
         scaleFactor=1.1,
         minNeighbors=15,
